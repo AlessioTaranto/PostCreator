@@ -12,24 +12,20 @@ html, body {
     color: #e0e0e0; /* Light grey text for a futuristic feel */
 }
 
-/* Animated gradient background with a tech feel */
+/* More visibly animated gradient background */
 body {
-    animation: GradientBG 30s ease infinite;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    animation: GradientBG 10s ease infinite; /* Faster animation cycle */
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364, #0f2027);
     background-size: 300% 300%;
 }
 
 @keyframes GradientBG {
-    0% {
+    0%, 100% {
         background-position: 0% 50%
     }
 
     50% {
         background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
     }
 }
 
@@ -49,34 +45,42 @@ a, .btn-link {
         color: #0097a7; /* Darker cyan on hover */
     }
 
-/* Button styling with futuristic effects */
+/* Button styling with futuristic effects and color themes */
 .btn {
     font-size: 16px;
     padding: 10px 20px;
     border-radius: 4px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
-    border: none;
+    transition: all 0.5s ease; /* Smooth transition for all changes */
+    border: 2px solid transparent; /* Transparent border initially */
+    background-image: none; /* No background initially for a clean look */
+    color: #fff;
 }
 
+/* Primary button theme */
 .btn-primary {
-    background-color: #2196f3; /* Blue background for primary buttons */
-    color: #fff;
+    border-color: #007bff; /* Blue border for primary buttons */
 }
 
     .btn-primary:hover {
-        background-color: #1e88e5; /* Slightly darker blue on hover */
-        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        background-image: linear-gradient(45deg, #007bff, #0062cc); /* Blue gradient on hover */
     }
 
-.btn-success {
-    background-color: #4caf50; /* Green background for success buttons */
-    color: #fff;
+/* Secondary button theme */
+.btn-secondary {
+    border-color: #6c757d; /* Grey border for secondary buttons */
 }
 
-    .btn-success:hover {
-        background-color: #43a047; /* Darker green on hover */
-        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    .btn-secondary:hover {
+        background-image: linear-gradient(45deg, #6c757d, #5a6268); /* Grey gradient on hover */
+    }
+
+/* Tertiary button theme */
+.btn-tertiary {
+    border-color: #28a745; /* Green border for tertiary buttons */
+}
+
+    .btn-tertiary:hover {
+        background-image: linear-gradient(45deg, #28a745, #218838); /* Green gradient on hover */
     }
 
 /* Content and form enhancements */
@@ -121,23 +125,4 @@ input[type="text"], .form-control {
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
 }
-
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
-
-.blazor-error-boundary {
-    background: #b32121;
-    padding: 1rem 1rem 1rem 3.7rem;
-    color: white;
-}
-
-    .blazor-error-boundary::after {
-        content: "An error has occurred.";
-        font-weight: bold;
-    }
