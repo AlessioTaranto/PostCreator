@@ -1,0 +1,49 @@
+﻿@page "/content-generator"
+@using PostCreator.Core.Services
+@using PostCreator.Infrastructure.Services
+@using static PostCreator.Core.Records
+@inject IOpenAIService OpenAIService
+@inject ILinkedInService LinkedInService
+
+<h3>Generate and Post Content</h3>
+
+<div class="mb-3">
+    <label for="promptInput" class="form-label">Prompt</label>
+    <input type="text" class="form-control" id="promptInput" @bind="prompt">
+</div>
+<button class="btn btn-primary" @onclick="GenerateContent">Generate Content</button>
+<button class="btn btn-success" @onclick="PostToLinkedIn" disabled="@string.IsNullOrEmpty(generatedContent)">Post to LinkedIn</button>
+
+@if (!string.IsNullOrEmpty(generatedContent))
+{
+    <div class="mt-3">
+        <h5>Generated Content:</h5>
+        <p>@generatedContent</p>
+    </div>
+}
+
+@code {
+    private string prompt;
+    private string generatedContent;
+
+    private async Task GenerateContent()
+    {
+        generatedContent = await OpenAIService.GenerateTextAsync(prompt);
+    }
+
+    private async Task PostToLinkedIn()
+    {
+        // Assume you handle authorization and have access token
+        string accessToken = "Your LinkedIn access token";
+        var success = await LinkedInService.PostToLinkedInAsync(accessToken, new LinkedInPostContent("", ""));
+
+        if (success)
+        {
+            // Notify user of success
+        }
+        else
+        {
+            // Handle failure
+        }
+    }
+}
