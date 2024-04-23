@@ -1,4 +1,4 @@
-﻿@page "/content-generator"
+﻿@page "/"
 @using PostCreator.Core.Services
 @using PostCreator.Infrastructure.Services
 @using static PostCreator.Core.Records
@@ -11,8 +11,12 @@
     <label for="promptInput" class="form-label">Prompt</label>
     <input type="text" class="form-control" id="promptInput" @bind="prompt">
 </div>
-<button class="btn btn-primary" @onclick="GenerateContent">Generate Content</button>
-<button class="btn btn-success" @onclick="PostToLinkedIn" disabled="@string.IsNullOrEmpty(generatedContent)">Post to LinkedIn</button>
+<button class="btn btn-primary">
+    <i class="fas fa-cogs btn-icon"></i> Generate Content
+</button>
+<button class="btn btn-success" disabled="@string.IsNullOrEmpty(generatedContent)">
+    <i class="fas fa-share-square btn-icon"></i> Post to LinkedIn
+</button>
 
 @if (!string.IsNullOrEmpty(generatedContent))
 {
