@@ -19,7 +19,7 @@ namespace PostCreator.Infrastructure.Services
             _httpClient = httpClientFactory.CreateClient();
         }
 
-        public async Task<bool> PostToLinkedInAsync(string accessToken, LinkedInPostContent content)
+        public async Task<bool> PostToLinkedInAsync(string accessToken, Article content)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
 

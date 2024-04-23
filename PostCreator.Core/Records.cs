@@ -8,7 +8,7 @@ namespace PostCreator.Core
 {
     public class Records
     {
-        public record LinkedInPostContent(string Author, string PostText);
+        public record Article(string Title, string PostText);
         public record OpenAIResponse(string Text);
     }
 }

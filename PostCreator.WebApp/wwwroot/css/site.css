@@ -10,13 +10,9 @@ html, body {
     overflow-x: hidden;
     height: 100%;
     color: #e0e0e0; /* Light grey text for a futuristic feel */
-}
-
-/* More visibly animated gradient background */
-body {
-    animation: GradientBG 10s ease infinite; /* Faster animation cycle */
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364, #0f2027);
     background-size: 300% 300%;
+    animation: GradientBG 10s ease infinite; /* Faster animation cycle */
 }
 
 @keyframes GradientBG {
@@ -45,6 +41,7 @@ a, .btn-link {
         color: #0097a7; /* Darker cyan on hover */
     }
 
+
 /* Button styling with futuristic effects and color themes */
 .btn {
     font-size: 16px;
@@ -54,6 +51,7 @@ a, .btn-link {
     border: 2px solid transparent; /* Transparent border initially */
     background-image: none; /* No background initially for a clean look */
     color: #fff;
+    background-color: #333; /* Dark background to match the theme */
 }
 
 /* Primary button theme */
@@ -63,6 +61,7 @@ a, .btn-link {
 
     .btn-primary:hover {
         background-image: linear-gradient(45deg, #007bff, #0062cc); /* Blue gradient on hover */
+        box-shadow: 0 4px 8px rgba(0, 123, 255, 0.5); /* Blue glow on hover to match cards */
     }
 
 /* Secondary button theme */
@@ -72,6 +71,7 @@ a, .btn-link {
 
     .btn-secondary:hover {
         background-image: linear-gradient(45deg, #6c757d, #5a6268); /* Grey gradient on hover */
+        box-shadow: 0 4px 8px rgba(108, 117, 125, 0.5); /* Grey glow on hover to match cards */
     }
 
 /* Tertiary button theme */
@@ -81,7 +81,9 @@ a, .btn-link {
 
     .btn-tertiary:hover {
         background-image: linear-gradient(45deg, #28a745, #218838); /* Green gradient on hover */
+        box-shadow: 0 4px 8px rgba(40, 167, 69, 0.5); /* Green glow on hover to match cards */
     }
+
 
 /* Content and form enhancements */
 .content {
@@ -94,11 +96,13 @@ input[type="text"], .form-control {
     color: #ffffff; /* White text inside inputs */
     padding: 12px;
     border-radius: 4px;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transitions for background and border */
 }
 
     input[type="text"]:focus, .form-control:focus {
+        background: rgba(255, 255, 255, 0.2); /* Increase transparency slightly on focus for better visibility */
         border-color: #00bcd4; /* Cyan border on focus */
-        box-shadow: 0 0 8px rgba(0, 188, 212, 0.5); /* Cyan glow for focus */
+        box-shadow: 0 0 8px rgba(0, 188, 212, 0.5); /* Cyan glow to emphasize focus */
     }
 
 /* Validation and error styling */
@@ -116,6 +120,7 @@ input[type="text"], .form-control {
     margin-top: 5px;
 }
 
+
 #blazor-error-ui {
     background: #f44336;
     color: white;
@@ -126,3 +131,72 @@ input[type="text"], .form-control {
     left: 0;
     width: 100%;
 }
+
+
+/* Additional CSS styles for cards and skeleton loading animation with dark theme integration */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #2a2f35; /* Darker background for cards */
+    color: #e0e0e0; /* Light grey text to match the overall theme */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 300px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 188, 212, 0.2); /* Cyan glow on hover */
+}
+
+.skeleton-card {
+    width: 300px;
+    height: 200px;
+    background-color: #3a3f45; /* Darker background for skeleton cards */
+    border-radius: 8px;
+    animation: pulse 1.5s infinite ease-in-out; /* Preserve the pulse animation */
+}
+
+.skeleton-title, .skeleton-text {
+    height: 20px;
+    background-color: #4a4f55; /* Slightly lighter grey for loading elements */
+    margin: 10px;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Ensure responsive card container for various devices */
+@media (max-width: 768px) {
+    .card-container {
+        justify-content: center; /* Center cards on smaller screens */
+    }
+
+    .card {
+        width: 90%; /* Full-width cards on smaller devices */
+    }
+}
+
+/* Hover effects for card titles and icons */
+.card-title, .btn-icon {
+    transition: color 0.3s ease; /* Smooth color transition for interactive elements */
+}
+
+    .card-title:hover, .btn-icon:hover {
+        color: #00bcd4; /* Cyan color on hover for titles and icons */
+    }

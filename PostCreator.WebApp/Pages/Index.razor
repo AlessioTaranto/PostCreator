@@ -5,49 +5,100 @@
 @inject IOpenAIService OpenAIService
 @inject ILinkedInService LinkedInService
 
+@layout MainLayout
+
+<PageTitle>PostCreator</PageTitle>
+
 <h3>Generate and Post Content</h3>
 
 <div class="mb-3">
     <label for="promptInput" class="form-label">Prompt</label>
     <input type="text" class="form-control" id="promptInput" @bind="prompt">
+    <button class="btn btn-secondary" @onclick="GenerateRandomSubject">Random Subject</button>
+    <button class="btn btn-primary" @onclick="GenerateContent">
+        <i class="fas fa-cogs btn-icon"></i> Generate Content
+    </button>
 </div>
-<button class="btn btn-primary">
-    <i class="fas fa-cogs btn-icon"></i> Generate Content
-</button>
-<button class="btn btn-success" disabled="@string.IsNullOrEmpty(generatedContent)">
-    <i class="fas fa-share-square btn-icon"></i> Post to LinkedIn
-</button>
 
-@if (!string.IsNullOrEmpty(generatedContent))
+<!-- Explanation for the generation process -->
+<div class="mb-3">
+    <p>Enter a prompt to generate content related to a specific topic. Click "Random Subject" for a random topic.</p>
+</div>
+
+@if (isLoading)
 {
-    <div class="mt-3">
-        <h5>Generated Content:</h5>
-        <p>@generatedContent</p>
+    <div class="card-container">
+        <div class="skeleton-card">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+        </div>
+        <div class="skeleton-card">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+        </div>
+        <div class="skeleton-card">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+        </div>
+    </div>
+}
+
+@if (articles != null)
+{
+    <div class="card-container">
+        <!-- Explanation for the generated content -->
+        @foreach (var article in articles)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@article.Title</h5>
+                    <p class="card-text">@article.PostText</p>
+                    <button class="btn btn-success" @onclick="() => PostToLinkedIn(article)">
+                        <i class="fas fa-share-square btn-icon"></i> Post to LinkedIn
+                    </button>
+                </div>
+            </div>
+        }
     </div>
 }
 
 @code {
-    private string prompt;
-    private string generatedContent;
+    private string? prompt;
+    private bool isLoading;
+    private List<Article>? articles;
 
     private async Task GenerateContent()
     {
-        generatedContent = await OpenAIService.GenerateTextAsync(prompt);
+        isLoading = true;
+        articles = null;
+        await Task.Delay(2000); // Simulate a delay for loading
+        articles = new List<Article> {
+            new Article ("Generated Article 1", "Summary of the first article..." ),
+            new Article ("Generated Article 2", "Summary of the second article..." ),
+            new Article ("Generated Article 3", "Summary of the third article..." )
+        };
+
+        isLoading = false;
     }
 
-    private async Task PostToLinkedIn()
+    private void GenerateRandomSubject()
     {
-        // Assume you handle authorization and have access token
-        string accessToken = "Your LinkedIn access token";
-        var success = await LinkedInService.PostToLinkedInAsync(accessToken, new LinkedInPostContent("", ""));
+        var subjects = new[] { "Technology", "Health", "Environment" };
+        prompt = subjects[new Random().Next(subjects.Length)];
+    }
 
+    private void PostToLinkedIn(Article article)
+    {
+        bool success = true;
         if (success)
         {
             // Notify user of success
+            Console.WriteLine("Article posted successfully.");
         }
         else
         {
             // Handle failure
+            Console.WriteLine("Failed to post article.");
         }
     }
 }

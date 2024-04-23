@@ -9,6 +9,6 @@ namespace PostCreator.Core.Services
 {
     public interface ILinkedInService
     {
-        Task<bool> PostToLinkedInAsync(string accessToken, LinkedInPostContent content);
+        Task<bool> PostToLinkedInAsync(string accessToken, Article content);
     }
 }
