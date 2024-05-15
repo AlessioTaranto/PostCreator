@@ -6,3 +6,8 @@
 }
 
 <component type="typeof(App)" render-mode="ServerPrerendered" />
+<script>
+    window.copyTextToClipboard = function (text) {
+        navigator.clipboard.writeText(text);
+    }
+</script>

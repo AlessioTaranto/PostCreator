@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PostCreator.Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using static PostCreator.Core.Records;
 
 namespace PostCreator.Infrastructure.Services

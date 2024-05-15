@@ -2,9 +2,10 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
+
 /* Base font and body styling */
 html, body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Carnero Regular', 'Roboto', 'sans-serif';
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -100,6 +101,7 @@ input[type="text"], .form-control {
 }
 
     input[type="text"]:focus, .form-control:focus {
+        color: #ffffff; /* White text inside inputs */
         background: rgba(255, 255, 255, 0.2); /* Increase transparency slightly on focus for better visibility */
         border-color: #00bcd4; /* Cyan border on focus */
         box-shadow: 0 0 8px rgba(0, 188, 212, 0.5); /* Cyan glow to emphasize focus */
@@ -200,3 +202,11 @@ input[type="text"], .form-control {
     .card-title:hover, .btn-icon:hover {
         color: #00bcd4; /* Cyan color on hover for titles and icons */
     }
+
+
+@font-face {
+    font-family: 'Carnero Regular';
+    src: url('/fonts/Carnero Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}

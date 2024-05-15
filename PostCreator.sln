@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostCreator.WebApp", "PostCreator.WebApp\PostCreator.WebApp.csproj", "{7030298E-4991-4B0F-BF82-9D7882AE0E47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostCreator.WebApp", "PostCreator.WebApp\PostCreator.WebApp.csproj", "{7030298E-4991-4B0F-BF82-9D7882AE0E47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostCreator.Core", "PostCreator.Core\PostCreator.Core.csproj", "{22376D84-A3DD-4F35-9AFE-5047980AA7CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostCreator.Core", "PostCreator.Core\PostCreator.Core.csproj", "{22376D84-A3DD-4F35-9AFE-5047980AA7CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostCreator.Infrastructure", "PostCreator.Infrastructure\PostCreator.Infrastructure.csproj", "{0E8591C5-AFE1-4215-B81A-C097E50EA5EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostCreator.Infrastructure", "PostCreator.Infrastructure\PostCreator.Infrastructure.csproj", "{0E8591C5-AFE1-4215-B81A-C097E50EA5EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

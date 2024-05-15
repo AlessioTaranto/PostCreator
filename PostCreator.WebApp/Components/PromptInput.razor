@@ -1,0 +1,35 @@
+﻿@page "/prompt-input"
+@using PostCreator.Core.Services
+@inject IOpenAIService OpenAIService
+
+<div class="mb-3">
+    <label for="promptInput" class="form-label">Enter your Prompt</label>
+    <input type="text" class="form-control mb-2" id="promptInput" @bind="Prompt" placeholder="E.g., Technology, Health, Environment">
+    <button class="btn btn-secondary" @onclick="GenerateRandomSubject">
+        <i class="fas fa-random btn-icon"></i>
+        Random Subject
+    </button>
+    <button class="btn btn-primary" @onclick="GenerateContent">
+        <i class="fas fa-cogs btn-icon"></i>
+        Generate Content
+    </button>
+</div>
+
+@code {
+    [Parameter] public EventCallback<string> OnGenerateContent { get; set; }
+    public string? Prompt { get; set; }
+
+    private void GenerateRandomSubject()
+    {
+        var subjects = new[] { "Technology", "Health", "Environment" };
+        Prompt = subjects[new Random().Next(subjects.Length)];
+    }
+
+    private async Task GenerateContent()
+    {
+        if (OnGenerateContent.HasDelegate)
+        {
+            await OnGenerateContent.InvokeAsync(Prompt);
+        }
+    }
+}

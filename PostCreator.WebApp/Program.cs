@@ -1,5 +1,5 @@
-using PostCreator.Infrastructure.Services; // Adjust namespace to match your Infrastructure project
 using PostCreator.Core.Services; // Adjust namespace to match your Core project
+using PostCreator.Infrastructure.Services; // Adjust namespace to match your Infrastructure project
 
 var builder = WebApplication.CreateBuilder(args);
 

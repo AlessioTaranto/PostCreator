@@ -1,7 +1,8 @@
 ﻿@page "/"
 @using PostCreator.Core.Services
-@using PostCreator.Infrastructure.Services
-@using static PostCreator.Core.Records
+@using static PostCreator.Core.Models
+@using PostCreator.WebApp.Components
+@inject IJSRuntime JSRuntime
 @inject IOpenAIService OpenAIService
 @inject ILinkedInService LinkedInService
 
@@ -9,96 +10,36 @@
 
 <PageTitle>PostCreator</PageTitle>
 
-<h3>Generate and Post Content</h3>
+<h3>Welcome to PostCreator!</h3>
 
 <div class="mb-3">
-    <label for="promptInput" class="form-label">Prompt</label>
-    <input type="text" class="form-control" id="promptInput" @bind="prompt">
-    <button class="btn btn-secondary" @onclick="GenerateRandomSubject">Random Subject</button>
-    <button class="btn btn-primary" @onclick="GenerateContent">
-        <i class="fas fa-cogs btn-icon"></i> Generate Content
-    </button>
+    <p>Generate and Post Content effortlessly with just a few clicks.</p>
 </div>
 
-<!-- Explanation for the generation process -->
-<div class="mb-3">
-    <p>Enter a prompt to generate content related to a specific topic. Click "Random Subject" for a random topic.</p>
-</div>
+<PromptInput OnGenerateContent="HandleGenerateContent" />
 
-@if (isLoading)
-{
-    <div class="card-container">
-        <div class="skeleton-card">
-            <div class="skeleton-title"></div>
-            <div class="skeleton-text"></div>
-        </div>
-        <div class="skeleton-card">
-            <div class="skeleton-title"></div>
-            <div class="skeleton-text"></div>
-        </div>
-        <div class="skeleton-card">
-            <div class="skeleton-title"></div>
-            <div class="skeleton-text"></div>
-        </div>
-    </div>
-}
+<ArticleList @ref="articleList" OnArticleSelected="HandleArticleSelected" />
 
-@if (articles != null)
+@if (selectedArticle != null)
 {
-    <div class="card-container">
-        <!-- Explanation for the generated content -->
-        @foreach (var article in articles)
-        {
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">@article.Title</h5>
-                    <p class="card-text">@article.PostText</p>
-                    <button class="btn btn-success" @onclick="() => PostToLinkedIn(article)">
-                        <i class="fas fa-share-square btn-icon"></i> Post to LinkedIn
-                    </button>
-                </div>
-            </div>
-        }
-    </div>
+    <ArticleDetail SelectedArticle="selectedArticle" />
 }
 
 @code {
-    private string? prompt;
-    private bool isLoading;
-    private List<Article>? articles;
+    private ArticleList? articleList;
+    private Article? selectedArticle;
 
-    private async Task GenerateContent()
+    private async Task HandleGenerateContent(string prompt)
     {
-        isLoading = true;
-        articles = null;
-        await Task.Delay(2000); // Simulate a delay for loading
-        articles = new List<Article> {
-            new Article ("Generated Article 1", "Summary of the first article..." ),
-            new Article ("Generated Article 2", "Summary of the second article..." ),
-            new Article ("Generated Article 3", "Summary of the third article..." )
-        };
-
-        isLoading = false;
+        if (articleList != null)
+        {
+            await articleList.LoadArticles(prompt);
+        }
     }
 
-    private void GenerateRandomSubject()
+    private void HandleArticleSelected(Article article)
     {
-        var subjects = new[] { "Technology", "Health", "Environment" };
-        prompt = subjects[new Random().Next(subjects.Length)];
-    }
-
-    private void PostToLinkedIn(Article article)
-    {
-        bool success = true;
-        if (success)
-        {
-            // Notify user of success
-            Console.WriteLine("Article posted successfully.");
-        }
-        else
-        {
-            // Handle failure
-            Console.WriteLine("Failed to post article.");
-        }
+        selectedArticle = article;
+        StateHasChanged(); // Ensure the UI updates when an article is selected
     }
 }
