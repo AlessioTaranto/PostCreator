@@ -1,11 +1,21 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager Navigation
 
-<PageTitle>PostCreator</PageTitle>
-
-<div class="page">
-    <main>
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+<div class="container d-flex flex-column align-items-center justify-content-center min-vh-100 position-relative">
+    @if (Navigation.Uri != Navigation.BaseUri)
+    {
+        <button class="btn btn-secondary position-absolute top-left" @onclick="GoBack">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    }
+    <div class="content">
+        @Body
+    </div>
 </div>
+
+@code {
+    private void GoBack()
+    {
+        Navigation.NavigateTo("javascript:history.back()");
+    }
+}

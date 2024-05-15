@@ -3,43 +3,27 @@
 @using static PostCreator.Core.Models
 @using PostCreator.WebApp.Components
 @inject IJSRuntime JSRuntime
-@inject IOpenAIService OpenAIService
-@inject ILinkedInService LinkedInService
+@inject NavigationManager Navigation
+@inject IArticleService ArticleService
 
 @layout MainLayout
 
 <PageTitle>PostCreator</PageTitle>
 
-<h3>Welcome to PostCreator!</h3>
+<h3 class="text-center">Welcome to PostCreator!</h3>
 
-<div class="mb-3">
+<div class="text-center">
     <p>Generate and Post Content effortlessly with just a few clicks.</p>
 </div>
 
-<PromptInput OnGenerateContent="HandleGenerateContent" />
-
-<ArticleList @ref="articleList" OnArticleSelected="HandleArticleSelected" />
-
-@if (selectedArticle != null)
-{
-    <ArticleDetail SelectedArticle="selectedArticle" />
-}
+<div class="text-center">
+    <PromptInput OnGenerateContent="HandleGenerateContent" />
+</div>
 
 @code {
-    private ArticleList? articleList;
-    private Article? selectedArticle;
-
     private async Task HandleGenerateContent(string prompt)
     {
-        if (articleList != null)
-        {
-            await articleList.LoadArticles(prompt);
-        }
-    }
-
-    private void HandleArticleSelected(Article article)
-    {
-        selectedArticle = article;
-        StateHasChanged(); // Ensure the UI updates when an article is selected
+        await ArticleService.LoadArticles(prompt);
+        Navigation.NavigateTo("/article-list");
     }
 }

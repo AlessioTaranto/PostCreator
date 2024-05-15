@@ -210,3 +210,34 @@ input[type="text"], .form-control {
     font-weight: normal;
     font-style: normal;
 }
+
+/* Ensure the container takes the full viewport height */
+.min-vh-100 {
+    min-height: 100vh;
+}
+
+/* CSS for the back button */
+.position-relative {
+    position: relative;
+}
+
+.top-left {
+    top: 10px;
+    left: 10px;
+}
+
+/* Add fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.content {
+    animation: fadeIn 1s ease-in-out;
+    padding-top: 1.1rem;
+}

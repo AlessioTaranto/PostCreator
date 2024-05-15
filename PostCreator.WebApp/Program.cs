@@ -10,9 +10,8 @@ builder.Services.AddServerSideBlazor();
 // Create HTTP client
 builder.Services.AddHttpClient();
 
-// Register the OpenAI and LinkedIn services
-builder.Services.AddScoped<IOpenAIService, OpenAIService>();
-builder.Services.AddScoped<ILinkedInService, LinkedInService>();
+// Register services
+builder.Services.AddScoped<IArticleService, ArticleService>();
 
 var app = builder.Build();
 

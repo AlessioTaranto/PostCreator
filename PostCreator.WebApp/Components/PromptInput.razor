@@ -1,6 +1,6 @@
 ﻿@page "/prompt-input"
 @using PostCreator.Core.Services
-@inject IOpenAIService OpenAIService
+@inject NavigationManager Navigation
 
 <div class="mb-3">
     <label for="promptInput" class="form-label">Enter your Prompt</label>
@@ -31,5 +31,7 @@
         {
             await OnGenerateContent.InvokeAsync(Prompt);
         }
+
+        Navigation.NavigateTo("/article-list");
     }
 }
