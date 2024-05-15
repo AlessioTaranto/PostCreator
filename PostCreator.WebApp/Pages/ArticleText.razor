@@ -1,0 +1,30 @@
+﻿@page "/article-text"
+@using static PostCreator.Core.Models
+@using PostCreator.Core.Services
+@inject IArticleService ArticleService
+@inject NavigationManager Navigation
+
+<PageTitle>Article Text</PageTitle>
+
+<div class="container d-flex flex-column align-items-center justify-content-center min-vh-100 position-relative">
+    <div class="content">
+        <h3 class="text-center">Edit the article</h3>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Subtitle</h6>
+            </div>
+
+            <div class="card-body">
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <div id="quill-editor"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+

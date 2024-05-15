@@ -10,18 +10,22 @@
 
 <PageTitle>PostCreator</PageTitle>
 
-<div class="card">
-    <div class="card-body">
-        <h3 class="text-center">Welcome to PostCreator!</h3>
+<div class="container d-flex flex-column align-items-center justify-content-center min-vh-100 position-relative">
 
+    <div class="content">
         <div class="text-center">
+            <h3>Welcome to PostCreator!</h3>
             <p>Generate and Post Content effortlessly with just a few clicks.</p>
         </div>
-
-        <div class="text-center">
-            <PromptInput OnGenerateContent="HandleGenerateContent" />
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <PromptInput OnGenerateContent="HandleGenerateContent" />
+                </div>
+            </div>
         </div>
-    </div>
+</div>
+
 </div>
 
 @code {

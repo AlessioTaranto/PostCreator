@@ -5,13 +5,13 @@
 <div class="mb-3">
     <label for="promptInput" class="form-label">Enter your Prompt</label>
     <input type="text" class="form-control mb-2" id="promptInput" @bind="Prompt" placeholder="E.g., Technology, Health, Environment">
-    <button class="btn btn-secondary" @onclick="GenerateRandomSubject">
-        <i class="fas fa-random btn-icon"></i>
-        Random Subject
-    </button>
     <button class="btn btn-primary" @onclick="GenerateContent">
         <i class="fas fa-cogs btn-icon"></i>
         Generate Content
+    </button>
+    <button class="btn btn-secondary" @onclick="GenerateRandomSubject">
+        <i class="fas fa-random btn-icon"></i>
+        Random Subject
     </button>
 </div>
 

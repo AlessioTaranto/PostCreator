@@ -148,7 +148,7 @@ input[type="text"], .form-control {
     color: #e0e0e0; /* Light grey text to match the overall theme */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 500px;
+    width: 600px;
 
 }
 

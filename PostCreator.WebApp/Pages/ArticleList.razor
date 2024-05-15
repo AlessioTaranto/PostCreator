@@ -7,7 +7,8 @@
 <PageTitle>Articles</PageTitle>
 
 <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100 position-relative">
-    <div class="content text-center">
+    <div class="content">
+        <h3 class="text-center">Select a possible article</h3>
         @if (ArticleService.Articles == null || ArticleService.Articles.Count == 0)
         {
             <div>Loading articles...</div>
